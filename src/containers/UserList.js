@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux'
-import {Button} from "reactstrap";
+import {Button} from 'reactstrap';
+import {table} from 'reactstrap';
 
 const articleStyle = {
   width: '50%',
@@ -32,23 +33,18 @@ class UserList  extends Component {
     return (
      
       <div>
+        {this.props.data != null ? 
       
-            <table class="table table-hover" border="2" align="center" >
-           
-            
+          (<table class="table table-hover" border="2" align="center" responsive >
             <tr>
-            
               <th>Name</th>
               <th>Address</th>
               <th>Mobile No</th>
               <th>Email</th>
               <th>2FA</th>
               <th>Status</th>
-             
-
             </tr>
-            
-            
+         
         {this.props.data &&
         this.props.data.map((details,index) => {
           return [
@@ -66,18 +62,19 @@ class UserList  extends Component {
                 {"Disable"}
               </Button>
             } */}
-<td>
-{details.FA== "True" ? (<font color="Green"><td>Enable</td></font>) : (<font color="Red"><td>Disable</td></font>)}</td>
+            <td>
+            {details.FA== "True" ? (<font color="Green"><td>Enable</td></font>) : (<font color="Red"><td>Disable</td></font>)}</td>
              {/* <td key={index}>  */}
              <td>
              {details.Status== "Active" ? (<font color="Green"><td>{details.Status}</td></font>) : (<font color="Red"><td>{details.Status}</td></font>)}</td>
              </tr>
              
-            
+          
             
           ]
         })}
         </table>
+          ): (<div></div>)}
       </div>
       
     )
