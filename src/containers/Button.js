@@ -24,6 +24,7 @@ class Button extends React.Component {
         onMouseOut={() => { this.setState({ hover: false }) }}
         onMouseOver={() => { this.setState({ hover: true }) }}
         onClick={this.props.getData}
+       // onClick="IsEmpty()"
       >User List</button>
     );
   }
@@ -38,5 +39,4 @@ Button = connect(
   null,
   mapDispatchToProps,
 )(Button);
-
 export default Button;

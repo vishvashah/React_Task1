@@ -8,20 +8,11 @@ const articleStyle = {
   margin: '0 auto',
   color: 'olive',
 }
-  
-
-  
-// let UserList = ({ data }) => (
+  // let UserList = ({ data }) => (
 //   data ?
-  
-//     <data style={articleStyle} >
+  //     <data style={articleStyle} >
 //       <div>
-      
-      
-//        <h1>{data.Name}</h1>
-
-       
-       
+  //        <h1>{data.Name}</h1>
 //       </div>
 //     </data> :
 //     null
@@ -35,7 +26,7 @@ class UserList  extends Component {
       <div>
         {this.props.data != null ? 
       
-          (<table class="table table-hover" border="2" align="center" responsive >
+          (<table class="table table-hover" border="1" align="center" responsive >
             <tr>
               <th>Name</th>
               <th>Address</th>
@@ -48,26 +39,28 @@ class UserList  extends Component {
         {this.props.data &&
         this.props.data.map((details,index) => {
           return [
+            <tbody>
               <tr>
              <td key={index}> {details.Name}</td>
              <td key={index}> {details.Address}</td>
              <td key={index}> {details.Mobile_No}</td>
              <td key={index}> {details.Email}</td>
-            {/* {details.FA === "True" ? 
-              <Button color="primary">
+            {details.FA === "True" ? 
+              <Button color="success" align="center">
                   Enable
               </Button>
               :
-              <Button color="success">
+              <Button color="danger">
                 {"Disable"}
               </Button>
-            } */}
-            <td>
-            {details.FA== "True" ? (<font color="Green"><td>Enable</td></font>) : (<font color="Red"><td>Disable</td></font>)}</td>
+            }
+            {/* <td>
+            {details.FA== "True" ? (<font color="Green"><td>Enable</td></font>) : (<font color="Red"><td>Disable</td></font>)}</td> */}
              {/* <td key={index}>  */}
              <td>
              {details.Status== "Active" ? (<font color="Green"><td>{details.Status}</td></font>) : (<font color="Red"><td>{details.Status}</td></font>)}</td>
              </tr>
+             </tbody>
              
           
             
@@ -85,6 +78,9 @@ class UserList  extends Component {
 const mapStateToProps = (state) => ({
   data: state.news,
 })
+// const mapDispatchToProps = {
+//   fetchData: fetchData,
+// };
 
 UserList = connect(
   mapStateToProps,

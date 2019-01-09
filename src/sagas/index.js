@@ -1,4 +1,6 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
+import {fetchData, fail } from '../actions/index';
+function* fetchNews() {
 
 const data = [
   {
@@ -48,26 +50,27 @@ const data = [
     Email:"D@gmail.com",
     FA:"True",
     Status:"Active"
-  },
+  }
 ]
-
-
-function* fetchNews() {
+//yield put({ type: "DATA_RECEIVED", json: data});
 
   // const json = yield fetch('https://newsapi.org/v1/articles?source=cnn&apiKey=c39a26d9c12f48dba2a5c00e35684ecc')
   //   .then(response => response.json(), );
+  //yield put(setTagData({json: data}))
+  
 
-  yield put({ type: "DATA_RECEIVED", json: data });
+try{
+  yield put(fetchData(data));
+}
+catch(error){
+yield put(fail(error));
 }
 
-
-
+}
 function* actionWatcher() {
   yield takeLatest('GET_DATA', fetchNews)
  
 }
-
-
 
 export default function* rootSaga() {
   yield all([
